@@ -1,37 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## 프로젝트 생성
+`npx create-next-app@lastest`
+### UI 설치
+`npx shadcn-ui@lastest init`
+### 프로젝트 실행
+`npm run dev`
+- localhost:3000
+#### app 라우터
+기본
+- app폴더 이하에 폴더를 만들고, 그 폴더 내부에 page.tsx를 두고 내용을 넣는 형태
+- app > example > page.tsx
+- localhost:3000/example이 경로가 되고, page.tsx의 내용이 example 경로의 화면이 됨
+[] 동적라우팅
+- app폴더 이하에 폴더를 만들고, 그 폴더 내부에 폴더이름이 대괄호 형태 폴더 안에 page.tsx를 두는 형태
+- app > users > [id] > page.tsx
+- localhost:3000/users/123
+```js
+const IdPage =  ({
+  params,
+ ｝: {
+  params: { id： string }
+}）=>｛
+  return (
+    <div>
+      Id: {params. id}
+    </div>
+  );
+}；
 
-## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+export default IdPage;
 ```
+![image](https://github.com/user-attachments/assets/3eaf9899-8241-4259-8ac3-becadd6a3dc8)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+() 경로 숨기는 방법
+- app폴더 이하에 ()형태 폴더를 만들고, 그 안에 새로운 폴더를 두는 형태
+- app > (test) > something : localhost:3000/something
+- app > (test) > other : localhost:3000/other
+- 즉, (test)경로는 숨겨짐
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+#### 경로 핸들러(내부 API)
+- 경로 `app/users/route.ts`
+```js
+import { NextResponse } from "next/server";
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+export function GET() {
+  return NextResponse.json({
+    hello: "gayoung",
+  });
+}
+```
+![image](https://github.com/user-attachments/assets/c6b832c5-0f7c-4ba8-b508-9d1edae0544b)
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# trello-next14
