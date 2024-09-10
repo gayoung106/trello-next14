@@ -3,9 +3,15 @@ import localFont from "next/font/local";
 import { Medal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { Poppins } from "next/font/google";
 
 const headingFont = localFont({
   src: "../../public/fonts/PretendardVariable.woff2",
+});
+
+const textFont = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
 });
 
 const MarketingPage = () => {
@@ -28,7 +34,12 @@ const MarketingPage = () => {
           하나둘셋
         </div>
       </div>
-      <div className="text-sm md:text-xl text-neutral-400 mt-4 max-w-xs md:max-w-2xl text-center mx-auto">
+      <div
+        className={cn(
+          "text-sm md:text-xl text-neutral-400 mt-4 max-w-xs md:max-w-2xl text-center mx-auto",
+          textFont.className
+        )}
+      >
         자세한 설명 여기여기여기
       </div>
       <Button className="mt-6" size="lg" asChild>
